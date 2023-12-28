@@ -13,6 +13,11 @@ export class AuthService {
   private _user: LoginResponse | null = null;
   private _router = inject(Router);
 
+  public get isAdmin() {
+    const user = this.user;
+    return user && user.role === 'ADMIN';
+  }
+
   public get user() {
     const userLS = localStorage.getItem('user');
     const user = (userLS ? JSON.parse(userLS) : null) as LoginResponse | null;

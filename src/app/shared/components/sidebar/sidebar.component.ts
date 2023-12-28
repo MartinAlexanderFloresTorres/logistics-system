@@ -16,6 +16,14 @@ export class SidebarComponent {
   public showReportMenu = false;
   private _authService = inject(AuthService);
 
+  public get user() {
+    return this._authService.user;
+  }
+
+  public get isAdmin() {
+    return this._authService.isAdmin;
+  }
+
   public toggleAdminMenu() {
     this.showAdminMenu = !this.showAdminMenu;
   }
@@ -30,8 +38,5 @@ export class SidebarComponent {
 
   public logout(): void {
     this._authService.logout();
-  }
-  public get user() {
-    return this._authService.user;
   }
 }
