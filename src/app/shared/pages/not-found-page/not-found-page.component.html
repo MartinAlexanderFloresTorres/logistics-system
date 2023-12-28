@@ -1,8 +1,8 @@
 <!-- pagina 404 con tailwind modo oscuro -->
 
 <div class="flex flex-col items-center justify-center h-screen">
-  <div>
-    <h1 class="text-center mb-4 text-6xl font-bold text-white">404</h1>
+  <div class="flex-1 flex flex-col items-center justify-center p-4">
+    <h1 class="text-center mb-4 text-6xl font-bold text-primary">404</h1>
     <h2 class="text-center mb-4 text-2xl font-semibold text-white">
       Pagina no encontrada
     </h2>
@@ -12,7 +12,9 @@
     <a routerLink="/" class="btn btn--primary">Volver al inicio</a>
   </div>
 
-  <div class="flex flex-col items-center justify-center mt-8 text-white">
+  <div
+    class="flex flex-col items-center justify-center mt-8 text-white w-full border-t border-solid border-color-primary p-4"
+  >
     <p class="text-center text-lg animate-pulse">
       Redireccionando en
       <span class="text-primary font-extrabold">{{ seconds }}</span>

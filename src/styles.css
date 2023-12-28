@@ -121,6 +121,9 @@ img {
   -webkit-text-fill-color: transparent;
   font-weight: bold;
 }
+.border-color-primary {
+  border-color: rgb(47, 48, 55);
+}
 /* form */
 .form {
   width: 100%;

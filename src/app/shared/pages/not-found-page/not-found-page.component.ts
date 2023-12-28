@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'shared-not-found-page',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './not-found-page.component.html',
   styleUrl: './not-found-page.component.css',
 })
