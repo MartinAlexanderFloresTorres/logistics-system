@@ -4,12 +4,12 @@ import { PAGE_PATHS } from '../../constants';
 
 const routes: Routes = [
   {
-    path: '',
+    path: PAGE_PATHS.CATEGORIES.PATH,
     children: [
       {
-        title: 'Inicio',
-        path: PAGE_PATHS.DASHBOARD.DASHBOARD,
-        loadComponent: () => import('./pages/dasboard-page/dasboard-page.component').then((c) => c.DasboardPageComponent),
+        title: 'Categorias',
+        path: PAGE_PATHS.CATEGORIES.INDEX,
+        loadComponent: () => import('./pages/list-page/list-page.component').then((m) => m.ListPageComponent),
       },
     ],
   },
@@ -20,9 +20,8 @@ const routes: Routes = [
     redirectTo: PAGE_PATHS.NOT_FOUND,
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class CategoryRoutingModule {}

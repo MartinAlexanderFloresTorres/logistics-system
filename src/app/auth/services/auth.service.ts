@@ -14,8 +14,9 @@ export class AuthService {
   private _router = inject(Router);
 
   public get user() {
-    const user = localStorage.getItem('user');
-    return this._user || (user ? JSON.parse(user) : null);
+    const userLS = localStorage.getItem('user');
+    const user = (userLS ? JSON.parse(userLS) : null) as LoginResponse | null;
+    return this._user || user;
   }
 
   public login(username: string, password: string): Observable<LoginResponse | null> {

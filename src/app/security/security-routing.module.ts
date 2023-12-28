@@ -4,12 +4,12 @@ import { PAGE_PATHS } from '../../constants';
 
 const routes: Routes = [
   {
-    path: '',
+    path: PAGE_PATHS.SECURITY.INDEX,
     children: [
       {
-        title: 'Inicio',
-        path: PAGE_PATHS.DASHBOARD.DASHBOARD,
-        loadComponent: () => import('./pages/dasboard-page/dasboard-page.component').then((c) => c.DasboardPageComponent),
+        title: 'Usuarios',
+        path: PAGE_PATHS.SECURITY.USERS,
+        loadComponent: () => import('./pages/users-page/users-page.component').then((m) => m.UsersPageComponent),
       },
     ],
   },
@@ -25,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class SecurityRoutingModule {}

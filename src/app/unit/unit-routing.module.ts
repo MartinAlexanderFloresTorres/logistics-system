@@ -4,12 +4,12 @@ import { PAGE_PATHS } from '../../constants';
 
 const routes: Routes = [
   {
-    path: '',
+    path: PAGE_PATHS.UNITS.PATH,
     children: [
       {
-        title: 'Inicio',
-        path: PAGE_PATHS.DASHBOARD.DASHBOARD,
-        loadComponent: () => import('./pages/dasboard-page/dasboard-page.component').then((c) => c.DasboardPageComponent),
+        title: 'Unidades de medida',
+        path: PAGE_PATHS.UNITS.INDEX,
+        loadComponent: () => import('./pages/list-page/list-page.component').then((m) => m.ListPageComponent),
       },
     ],
   },
@@ -25,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class UnitRoutingModule {}
