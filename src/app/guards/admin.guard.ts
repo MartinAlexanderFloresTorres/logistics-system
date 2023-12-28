@@ -5,6 +5,6 @@ import { AuthService } from '../auth/services/auth.service';
 export const adminGuard: CanActivateFn = (route, state) => {
   const token = localStorage.getItem('token');
   const authService = inject(AuthService);
-  if (token && authService.user && authService.user.role === 'ADMIN') return true;
+  if (token && authService.user && authService.isAdmin) return true;
   return false;
 };

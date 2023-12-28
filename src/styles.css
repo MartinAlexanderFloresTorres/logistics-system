@@ -85,6 +85,7 @@ img {
   padding: 10px 20px;
   font-size: 16px;
   transition: all 0.2s ease 0s;
+  cursor: pointer;
 }
 .btn--primary {
   background: linear-gradient(
