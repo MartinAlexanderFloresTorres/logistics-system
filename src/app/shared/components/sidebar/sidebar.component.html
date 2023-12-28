@@ -1,0 +1,622 @@
+<div class="w-[300px] sidebar flex flex-col" *ngIf="user">
+  <div class="p-4 flex flex-col gap-2 w-full sticky top-0 bg-black">
+    <div class="flex items-center justify-between gap-2">
+      <a class="flex items-center gap-2" href="/">
+        <img
+          height="50px"
+          alt="Leonardo.Ai"
+          src="../../../../assets/logo-circle.png"
+          class="h-[50px]"
+        />
+        <p class="font-semibold">
+          Logistica <span class="text-primary">System</span>
+        </p>
+      </a>
+      <button
+        type="button"
+        class="md:hidden w-[40px] h-[40px] p-1 flex items-center justify-center rounded-full hover:bg-gray-900 transition-colors duration-300"
+      >
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M17.657 6.34375L12.0001 12.0006M12.0001 12.0006L6.34326 17.6575M12.0001 12.0006L17.657 17.6575M12.0001 12.0006L6.34326 6.34375"
+            stroke-width="2"
+            stroke="currentColor"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="p-2 flex flex-col gap-2 w-full flex-1">
+    <a
+      class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+      routerLink="/dashboard"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-home"
+        width="44"
+        height="44"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+      </svg>
+      <span> Inicio </span>
+    </a>
+
+    <div class="w-full">
+      <button
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link w-full"
+        [ngClass]="{ 'router-link-active': showAdminMenu }"
+        (click)="toggleAdminMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-spy"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 11h18" />
+          <path d="M5 11v-4a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v4" />
+          <path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+          <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+          <path d="M10 17h4" />
+        </svg>
+        <span> Administración </span>
+      </button>
+
+      <div class="animate__expandin p-2" *ngIf="showAdminMenu">
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/categories"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-category-2"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14 4h6v6h-6z" />
+            <path d="M4 14h6v6h-6z" />
+            <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+            <path d="M7 7m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+          </svg>
+          <span> Categorias </span>
+        </a>
+
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/cost-centers"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-report-money"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"
+            />
+            <path
+              d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"
+            />
+            <path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+            <path d="M12 17v1m0 -8v1" />
+          </svg>
+          <span> Centros de costo </span>
+        </a>
+
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/brands"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-keyframes"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9.225 18.412a1.595 1.595 0 0 1 -1.225 .588c-.468 0 -.914 -.214 -1.225 -.588l-4.361 -5.248a1.844 1.844 0 0 1 0 -2.328l4.361 -5.248a1.595 1.595 0 0 1 1.225 -.588c.468 0 .914 .214 1.225 .588l4.361 5.248a1.844 1.844 0 0 1 0 2.328l-4.361 5.248z"
+            />
+            <path
+              d="M17 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+            />
+            <path
+              d="M13 5l4.586 5.836a1.844 1.844 0 0 1 0 2.328l-4.586 5.836"
+            />
+          </svg>
+          <span> Marcas </span>
+        </a>
+
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/products"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-building-store"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 21l18 0" />
+            <path
+              d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4"
+            />
+            <path d="M5 21l0 -10.15" />
+            <path d="M19 21l0 -10.15" />
+            <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+          </svg>
+          <span> Productos </span>
+        </a>
+
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/suppliers"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-users"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+          </svg>
+          <span> Proveedores </span>
+        </a>
+
+        <a
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+          routerLink="/admin/units"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-users-group"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+          </svg>
+          <span> Unidades de medida </span>
+        </a>
+      </div>
+
+      <a
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+        routerLink="/Kardex"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrows-sort"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 9l4 -4l4 4m-4 -4v14" />
+          <path d="M21 15l-4 4l-4 -4m4 4v-14" />
+        </svg>
+        <span> Kardex </span>
+      </a>
+
+      <a
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+        routerLink="/purchase-orders"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-shopping-bag-check"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M11.5 21h-2.926a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304h11.339a2 2 0 0 1 1.977 2.304l-.5 3.248"
+          />
+          <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+          <path d="M15 19l2 2l4 -4" />
+        </svg>
+        <span> Ordenes de Compra </span>
+      </a>
+
+      <a
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+        routerLink="/purchase-services"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-truck"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+          <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+          <path
+            d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"
+          />
+        </svg>
+        <span> Ordenes de Servicio </span>
+      </a>
+
+      <a
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+        routerLink="/voucher-entries"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-package-import"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
+          <path d="M12 12l8 -4.5" />
+          <path d="M12 12v9" />
+          <path d="M12 12l-8 -4.5" />
+          <path d="M22 18h-7" />
+          <path d="M18 15l-3 3l3 3" />
+        </svg>
+        <span> Vales de entrada </span>
+      </a>
+
+      <a
+        class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+        routerLink="/voucher-outputs"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-package-export"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
+          <path d="M12 12l8 -4.5" />
+          <path d="M12 12v9" />
+          <path d="M12 12l-8 -4.5" />
+          <path d="M15 18h7" />
+          <path d="M19 15l3 3l-3 3" />
+        </svg>
+        <span> Vales de salida </span>
+      </a>
+
+      <div class="w-full">
+        <button
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link w-full"
+          [ngClass]="{ 'router-link-active': showReportMenu }"
+          (click)="toggleReportMenu()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-chart-infographic"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+            <path d="M7 3v4h4" />
+            <path d="M9 17l0 4" />
+            <path d="M17 14l0 7" />
+            <path d="M13 13l0 8" />
+            <path d="M21 12l0 9" />
+          </svg>
+          <span> Reportes </span>
+        </button>
+
+        <div class="animate__expandin p-2" *ngIf="showReportMenu">
+          <a
+            class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+            routerLink="/reports/purchase-orders"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-shopping-bag-check"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M11.5 21h-2.926a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304h11.339a2 2 0 0 1 1.977 2.304l-.5 3.248"
+              />
+              <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+              <path d="M15 19l2 2l4 -4" />
+            </svg>
+            <span> Ordenes de compra </span>
+          </a>
+
+          <a
+            class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+            routerLink="/reports/purchase-services"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-truck"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path
+                d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"
+              />
+            </svg>
+            <span> Ordenes de servicio </span>
+          </a>
+
+          <a
+            class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+            routerLink="/reports/voucher-outputs"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-package-export"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
+              <path d="M12 12l8 -4.5" />
+              <path d="M12 12v9" />
+              <path d="M12 12l-8 -4.5" />
+              <path d="M15 18h7" />
+              <path d="M19 15l3 3l-3 3" />
+            </svg>
+            <span> Vales de salida </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <button
+          class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link w-full"
+          [ngClass]="{ 'router-link-active': showSecurityMenu }"
+          (click)="toggleSecurityMenu()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-shield-lock"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"
+            />
+            <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 12l0 2.5" />
+          </svg>
+          <span> Seguridad </span>
+        </button>
+
+        <div class="animate__expandin p-2" *ngIf="showSecurityMenu">
+          <a
+            class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+            routerLink="/security/users"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-user-shield"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h2" />
+              <path
+                d="M22 16c0 4 -2.5 6 -3.5 6s-3.5 -2 -3.5 -6c1 0 2.5 -.5 3.5 -1.5c1 1 2.5 1.5 3.5 1.5z"
+              />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+            </svg>
+            <span> Usuarios </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2 flex flex-col gap-2 w-full sticky bottom-0 bg-black">
+    <button
+      class="px-6 py-2 text-base font-normal cursor-pointer transition-all duration-300 sidebar__link line-clamp-2"
+      (click)="logout()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-logout"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+        />
+        <path d="M9 12h12l-3 -3" />
+        <path d="M18 15l3 -3" />
+      </svg>
+      <span> Cerrar sesión </span>
+    </button>
+
+    <div class="px-6 py-2 text-base font-normal flex items-center gap-2">
+      <div
+        class="select-none w-[40px] h-[40px] rounded-full btn--primary text-white flex items-center justify-center text-base uppercase"
+      >
+        {{ user.name.charAt(0) }}
+      </div>
+      <span class="text-sm font-semibold text-gray-200 uppercase line-clamp-1">
+        {{ user.name }}</span
+      >
+    </div>
+  </div>
+</div>

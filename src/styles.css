@@ -1,1 +1,164 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --background-body: #000;
+  --background-form: #171717;
+  --background-form-input: #111;
+  --background-form-input-focus: #1a1a1a;
+
+  --color-text: rgba(255, 255, 255, 0.92);
+  --color-form-input: #fff;
+  --color-form-input-placeholder: #636363;
+
+  --font-primary: "Roboto", sans-serif;
+}
+
+/* globals */
+html {
+  color-scheme: dark;
+}
+body {
+  background: var(--background-body);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  min-width: 400px;
+}
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  user-select: none;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+label {
+  user-select: none;
+}
+input,
+textarea,
+select {
+  border: none;
+  outline: none;
+  user-select: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+/* utilites */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* btn */
+.btn {
+  width: 100%;
+  color: #fff;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  appearance: none;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  font-weight: 400;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: all 0.2s ease 0s;
+}
+.btn--primary {
+  background: linear-gradient(
+    122deg,
+    rgb(250, 85, 96) 0.01%,
+    rgb(177, 75, 244) 49.9%,
+    rgb(77, 145, 255) 100%
+  );
+}
+.btn--primary:disabled {
+  opacity: 0.5;
+}
+
+.btn--primary:disabled:hover {
+  box-shadow: none;
+}
+
+.btn--primary:hover {
+  box-shadow: rgba(161, 128, 255, 0.6) 0px 0px calc(1rem) 0px;
+  animation-timing-function: ease-out;
+  animation-duration: 200ms;
+}
+
+.text-primary {
+  background: linear-gradient(
+      81.02deg,
+      rgb(250, 85, 96) -23.49%,
+      rgb(177, 75, 244) 45.66%,
+      rgb(77, 145, 255) 114.8%
+    )
+    text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+/* form */
+.form {
+  width: 100%;
+}
+.form .form__title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.form .form__label {
+  display: block;
+  font-size: 16px;
+}
+.form .form__input {
+  width: 100%;
+  appearance: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--color-form-input);
+  background: var(--background-form-input);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px calc(0.09375rem) calc(0.25rem)
+    calc(-0.0625rem);
+  font-size: 16px;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  font-weight: 400;
+  transition: all 0.2s ease 0s;
+}
+.form .form__input::placeholder {
+  color: var(--color-form-input-placeholder);
+}
+.form .form__input:-webkit-autofill {
+  box-shadow: rgb(19, 19, 19) 0px 0px 0px calc(62.5rem) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.form .form__input:focus {
+  z-index: 1;
+  border-color: rgb(114, 88, 242);
+  box-shadow: rgb(114, 88, 242) 0px 0px 0px calc(0.0625rem);
+}

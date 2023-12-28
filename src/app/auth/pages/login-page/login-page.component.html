@@ -1,0 +1,50 @@
+<section class="login__container">
+  <div class="login">
+    <form class="form p-10" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="flex flex-col items-center gap-2">
+        <img
+          height="80px"
+          src="../../../../assets/logo-circle.png"
+          alt="Logo"
+          class="h-[80px] mx-auto object-contain"
+        />
+        <legend class="form__title">Iniciar sesión</legend>
+      </div>
+
+      <shared-message [message]="message"></shared-message>
+
+      <div class="flex flex-col gap-1 mb-6">
+        <label class="form__label" for="username">Usuario</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Ingresa su usuario"
+          class="form__input"
+          formControlName="username"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1 mb-6">
+        <label class="form__label" for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Ingresa su contraseña"
+          class="form__input"
+          formControlName="password"
+        />
+      </div>
+
+      <shared-button
+        class="w-full"
+        text="Iniciar sesión"
+        type="submit"
+        [loading]="loading"
+      />
+    </form>
+    <div class="login__banner"></div>
+  </div>
+  <div class="login__overlay"></div>
+</section>

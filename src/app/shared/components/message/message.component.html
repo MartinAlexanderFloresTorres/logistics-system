@@ -1,0 +1,14 @@
+<div
+  *ngIf="message.message"
+  class="select-none text-center bg-opacity-10 border border-opacity-30 px-3 py-2 rounded relative mb-4"
+  [ngClass]="{
+    'bg-red-800 text-red-500 border-red-800': message.type === 'error',
+    'bg-green-800 text-green-500 border-green-800': message.type === 'success',
+    'bg-yellow-800 text-yellow-500 border-yellow-800':
+      message.type === 'warning',
+    'bg-blue-800 text-blue-500 border-blue-800': message.type === 'info'
+  }"
+  role="alert"
+>
+  {{ message.message }}
+</div>

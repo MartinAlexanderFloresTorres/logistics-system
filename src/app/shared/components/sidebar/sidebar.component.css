@@ -1,0 +1,78 @@
+.sidebar {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  overflow: scroll;
+  color: rgb(167, 178, 193);
+  border-right: calc(0.0625rem) solid rgb(47, 48, 55);
+  background: black;
+}
+.sidebar::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: black;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgb(47, 48, 55);
+}
+.sidebar::-webkit-scrollbar-corner {
+  display: none;
+}
+
+.sidebar__link {
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  text-align: left;
+  column-gap: 14px;
+}
+.sidebar__link svg {
+  display: block;
+  color: currentColor;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+}
+
+.router-link-active,
+.sidebar__link:hover {
+  background: rgb(27, 28, 32);
+  color: rgb(255, 255, 255);
+}
+.router-link-active,
+.router-link-active:hover {
+  background: linear-gradient(
+      81.02deg,
+      rgb(250, 85, 96) -23.49%,
+      rgb(177, 75, 244) 45.66%,
+      rgb(77, 145, 255) 114.8%
+    )
+    text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.router-link-active svg {
+  color: rgb(177, 75, 244);
+}
+.animate__expandin {
+  width: 240px;
+  margin: 4px 0px 4px auto;
+  border-left: 0.25rem solid rgb(27, 28, 32);
+  animation: expandin 0.3s linear;
+}
+.animate__expandin a {
+  font-size: 15px;
+}
+@keyframes expandin {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
