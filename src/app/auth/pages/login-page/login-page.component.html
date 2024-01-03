@@ -11,7 +11,10 @@
         <legend class="form__title">Iniciar sesión</legend>
       </div>
 
-      <shared-message [message]="message"></shared-message>
+      <shared-message
+        [message]="message"
+        *ngIf="message.message"
+      ></shared-message>
 
       <div class="flex flex-col gap-1 mb-6">
         <label class="form__label" for="username">Usuario</label>
@@ -39,6 +42,7 @@
 
       <shared-button
         class="w-full"
+        className="w-full btn btn--primary"
         text="Iniciar sesión"
         type="submit"
         [loading]="loading"

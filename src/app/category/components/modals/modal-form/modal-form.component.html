@@ -1,0 +1,81 @@
+<!-- MODAL -->
+<div class="modal">
+  <div class="modal__container p-6">
+    <!-- HEADER -->
+    <div class="mb-4 flex items-center justify-between gap-3">
+      <p class="text-2xl font-bold">
+        {{ categoryEdit ? "Editar" : "Crear" }}
+      </p>
+      <button
+        class="text-gray-400 hover:text-gray-200 transition-all duration-300"
+        (click)="handleClose()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-x"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- FORM -->
+    <form class="form" [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <shared-message
+        [message]="message"
+        *ngIf="message.message"
+      ></shared-message>
+
+      <!-- ABBREVIATION -->
+      <div class="flex flex-col gap-2 mb-4" *ngIf="!categoryEdit">
+        <label class="form__label" for="abbreviation">Abreviación</label>
+        <input
+          class="form__input"
+          type="text"
+          id="abbreviation"
+          formControlName="abbreviation"
+          placeholder="Abreviación"
+        />
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="flex flex-col gap-2 mb-4">
+        <label class="form__label" for="description">Descripción</label>
+        <textarea
+          class="form__input"
+          id="description"
+          formControlName="description"
+          placeholder="Descripción"
+        ></textarea>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="flex justify-end gap-2 flex-wrap">
+        <button
+          type="button"
+          class="btn btn--secondary"
+          (click)="handleClose()"
+        >
+          Cancelar
+        </button>
+
+        <shared-button
+          className="btn btn--primary"
+          [text]="categoryEdit ? 'Editar' : 'Crear'"
+          type="submit"
+          [loading]="loadingCategory.loading"
+        />
+      </div>
+    </form>
+  </div>
+</div>

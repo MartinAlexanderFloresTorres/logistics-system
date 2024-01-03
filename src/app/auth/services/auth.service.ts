@@ -1,15 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { LoginResponse } from '../interfaces';
-import { HttpClient } from '@angular/common/http';
-import { HttpBackendClient } from '../../../config';
+import { HttpBackendPublic } from '../../../config';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _http: HttpClient = inject(HttpBackendClient);
+  private _http: HttpBackendPublic = inject(HttpBackendPublic);
   private _user: LoginResponse | null = null;
   private _router = inject(Router);
 
@@ -26,7 +25,6 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<LoginResponse | null> {
     return this._http.post<LoginResponse>('/auth/login', { username, password }).pipe(
-      catchError(() => of(null)),
       tap((res) => {
         if (res) {
           this._user = res;
@@ -34,7 +32,8 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(res));
           this._router.navigateByUrl('/dashboard');
         }
-      })
+      }),
+      catchError(() => of(null))
     );
   }
 

@@ -1,0 +1,135 @@
+<div class="relative animate-alert bg-black rounded" *ngIf="message">
+  <div
+    class="select-none text-center bg-opacity-10 border border-opacity-30 px-3 py-2 rounded w-full flex gap-3 justify-between items-center"
+    [ngClass]="message.type | menssageColor"
+    role="alert"
+  >
+    <div class="flex gap-3 items-center flex-1">
+      <!-- INFO -->
+      <svg
+        *ngIf="message.type === 'info'"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-bell-question"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M13.5 17h-9.5a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6a2 2 0 1 1 4 0a7 7 0 0 1 4 6"
+        />
+        <path d="M9 17v1a3 3 0 0 0 5.914 .716" />
+        <path d="M19 22v.01" />
+        <path
+          d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"
+        />
+      </svg>
+
+      <!-- ERROR -->
+      <svg
+        *ngIf="message.type === 'error'"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-bell-x"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M13 17h-9a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6a2 2 0 1 1 4 0a7 7 0 0 1 4 6v2"
+        />
+        <path d="M9 17v1a3 3 0 0 0 4.194 2.753" />
+        <path d="M22 22l-5 -5" />
+        <path d="M17 22l5 -5" />
+      </svg>
+
+      <!-- WARNING -->
+      <svg
+        *ngIf="message.type === 'warning'"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-bell-exclamation"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M15 17h-11a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6a2 2 0 1 1 4 0a7 7 0 0 1 4 6v1.5"
+        />
+        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+        <path d="M19 16v3" />
+        <path d="M19 22v.01" />
+      </svg>
+
+      <!-- SUCCESS -->
+      <svg
+        *ngIf="message.type === 'success'"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-bell-check"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M11.5 17h-7.5a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3c.016 .129 .037 .256 .065 .382"
+        />
+        <path d="M9 17v1a3 3 0 0 0 2.502 2.959" />
+        <path d="M15 19l2 2l4 -4" />
+      </svg>
+
+      <!-- MESSAGE -->
+      <span class="line-clamp-1">{{ message.message }}</span>
+    </div>
+
+    <!-- CLOSE -->
+    <button
+      class="rounded-full p-1 hover:bg-opacity-5 hover:bg-white transition duration-300 ease-in-out"
+      (click)="closeAlert()"
+      aria-label="Close alert"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-x"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- INDICATOR -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-1 rounded-b animate-indicator"
+      [ngClass]="message.type | menssageColor : true"
+    ></div>
+  </div>
+</div>

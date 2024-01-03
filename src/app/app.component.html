@@ -1,1 +1,8 @@
 <router-outlet></router-outlet>
+
+<div class="fixed bottom-2 right-2 z-50 flex flex-col gap-2">
+  <shared-alert
+    *ngFor="let message of messages"
+    [message]="message"
+  ></shared-alert>
+</div>

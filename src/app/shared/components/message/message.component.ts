@@ -1,14 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Message } from '../../interfaces';
+import { Component, Input, OnInit } from '@angular/core';
+import { Message } from '../../../../class';
+import { MenssageColorPipe } from '../../pipes/menssage-color.pipe';
 
 @Component({
   selector: 'shared-message',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MenssageColorPipe],
   templateUrl: './message.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageComponent {
-  @Input() public message: Message = { message: '', type: null };
+export class MessageComponent implements OnInit {
+  @Input() public message!: Message;
+
+  ngOnInit(): void {
+    if (!this.message) {
+      throw new Error('MessageComponent: message is required');
+    }
+  }
 }

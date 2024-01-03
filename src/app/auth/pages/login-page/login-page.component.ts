@@ -4,14 +4,9 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MessageComponent } from '../../../shared/components/message/message.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../services/auth.service';
-import { Message } from '../../../shared/interfaces';
-import { MessageType } from '../../../shared/types';
 import { showLog } from '../../../../helpers';
-
-const DEFAULT_MESSAGE: Message = {
-  type: null,
-  message: null,
-};
+import { DEFAULT_MESSAGE } from '../../../../constants';
+import { Message } from '../../../../class';
 
 @Component({
   selector: 'app-login-page',
@@ -29,41 +24,37 @@ export class LoginPageComponent {
 
   private _authService = inject(AuthService);
   public loading: boolean = false;
-  public message: Message = DEFAULT_MESSAGE;
-
-  private addMessage(type: MessageType, message: string | null) {
-    this.message = { type, message };
-  }
+  public message = new Message(DEFAULT_MESSAGE.type, DEFAULT_MESSAGE.message);
 
   public onSubmit(): void {
     const { username, password } = this.form.value;
 
     if (!username) {
-      this.addMessage('error', 'Ingrese un usuario');
+      this.message.error('Ingrese un usuario');
       return;
     }
 
     if (!password) {
-      this.addMessage('error', 'Ingrese una contraseña');
+      this.message.error('Ingrese una contraseña');
       return;
     }
 
-    this.addMessage('info', 'Iniciando sesión...');
+    this.message.info('Iniciando sesión...');
     this.loading = true;
     this._authService.login(username, password).subscribe({
       next: (res) => {
         this.loading = false;
         if (!res) {
-          this.addMessage('error', 'Credenciales incorrectas');
+          this.message.error('Credenciales incorrectas');
           return;
         }
 
-        this.message = DEFAULT_MESSAGE;
+        this.message.reset();
       },
       error: (err) => {
         showLog(err);
         this.loading = false;
-        this.addMessage('error', 'Credenciales incorrectas');
+        this.message.error('Credenciales incorrectas');
       },
     });
   }

@@ -1,13 +1,7 @@
-<div class="w-[300px] sidebar flex flex-col" *ngIf="user">
-  <div class="p-4 flex flex-col gap-2 w-full sticky top-0 bg-black">
+<div class="sidebar flex flex-col" *ngIf="user">
+  <div class="p-7 flex flex-col gap-2 w-full sticky top-0 bg-black">
     <div class="flex items-center justify-between gap-2">
-      <a class="flex items-center gap-2" href="/">
-        <img
-          height="50px"
-          alt="Leonardo.Ai"
-          src="../../../../assets/logo-circle.png"
-          class="h-[50px]"
-        />
+      <a class="flex items-center gap-2" routerLink="/dashboard">
         <p class="font-semibold">
           Logistica <span class="text-primary">System</span>
         </p>

@@ -1,1 +1,149 @@
-<p>list-page works!</p>
+<!-- TOP -->
+<div
+  class="w-full flex items-center justify-between gap-4 p-4 border-b border-color-primary"
+>
+  <h1 class="text-primary text-3xl">Categorías</h1>
+  <button class="btn btn--primary gap-3" (click)="modalCategory.show(null)">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-plus"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 5l0 14" />
+      <path d="M5 12l14 0" />
+    </svg>
+    <span class="font-bold">Crear</span>
+  </button>
+</div>
+
+<section class="p-4">
+  <!-- TABLE -->
+  <div
+    class="overflow-x-auto"
+    *ngIf="!loadingCategories; else loadingCategoriesElse"
+  >
+    <table class="table">
+      <thead class="table__thead">
+        <tr>
+          <th>Abreviación</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="table__tbody">
+        <tr *ngFor="let category of categories">
+          <td>
+            <p class="text-sm line-clamp-2 truncate">
+              {{ category.abbreviation }}
+            </p>
+          </td>
+          <td>
+            <p class="text-sm line-clamp-2 truncate">
+              {{ category.description }}
+            </p>
+          </td>
+          <td>
+            <button
+              class="mx-auto btn-circle btn-circle--hover"
+              (click)="modalOptions.show(category)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-dots"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LOADING -->
+  <ng-template #loadingCategoriesElse>
+    <div class="flex flex-col items-center justify-center w-full h-full">
+      <p class="text-primary uppercase mb-2">Cargando categorías...</p>
+      <shared-spinner></shared-spinner>
+    </div>
+  </ng-template>
+</section>
+
+<!-- MODAL -->
+<div
+  class="modal"
+  *ngIf="modalOptions.isShow"
+  (click)="handleCloseMoreContainer($event)"
+>
+  <div class="modal__container" *ngIf="modalOptions.data">
+    <div class="flex flex-col text-zinc-300">
+      <div class="modal__option relative">
+        <p class="text-2xl font-bold mb-2 line-clamp-1">
+          {{ modalOptions.data.abbreviation }}
+        </p>
+        <p class="text-sm line-clamp-2">{{ modalOptions.data.description }}</p>
+      </div>
+
+      <button
+        (click)="modalCategory.show(modalOptions.data, modalOptions.hide)"
+        class="modal__option sky"
+      >
+        Editar
+      </button>
+      <button
+        (click)="modalRemove.show(modalOptions.data, modalOptions.hide)"
+        class="modal__option text-red-500"
+      >
+        Eliminar
+      </button>
+
+      <button
+        class="modal__option text-gray-400 hover:text-gray-200 border-none"
+        (click)="modalOptions.hide()"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FORM -->
+<category-modal-form
+  *ngIf="modalCategory.isShow"
+  [categoryEdit]="modalCategory.data"
+  (onCloseModal)="modalCategory.hide()"
+></category-modal-form>
+
+<!-- MODAL DELETE CONFIRM -->
+<shared-dialog-confirm
+  *ngIf="modalRemove.isShow"
+  dialogTitle="Eliminar categoría"
+  dialogMessage="¿Está seguro que desea eliminar esta categoría?"
+  dialogConfirmText="Eliminar"
+  dialogCancelText="Cancelar"
+  loadingText="Eliminando..."
+  [loading]="this.loadingRemove.loading"
+  (onConfirm)="handleDelete()"
+  (onCloseModal)="handleClosedModalDialog()"
+>
+  <shared-message *ngIf="message.message" [message]="message"></shared-message>
+</shared-dialog-confirm>

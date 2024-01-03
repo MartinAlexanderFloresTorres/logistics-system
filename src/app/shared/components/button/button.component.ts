@@ -12,4 +12,5 @@ import { CommonModule } from '@angular/common';
 export class ButtonComponent {
   @Input() public loading: boolean = false;
   @Input() public text: string = '';
+  @Input() public className: string = '';
 }

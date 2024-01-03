@@ -1,0 +1,100 @@
+.search {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  position: relative;
+  isolation: isolate;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.search__icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  position: absolute;
+  fill: rgb(142, 142, 142);
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.search__input {
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  position: relative;
+  appearance: none;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  border-image: initial;
+  border-color: transparent;
+  width: 100%;
+  min-width: 300px;
+  padding: 4px 4px 4px 30px;
+  color: rgb(255, 255, 255);
+  background: rgb(26, 26, 26);
+}
+.search__input:focus {
+  border-color: rgb(114, 88, 242);
+}
+.search__boton {
+  margin-left: 10px;
+  display: inline-flex;
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
+  position: relative;
+  vertical-align: middle;
+  outline-offset: 2px;
+  line-height: calc(1.25rem);
+  font-weight: 500;
+  font-size: 16px;
+  box-sizing: border-box;
+  box-shadow: rgba(143, 0, 255, 0) 0px 0px calc(0.9375rem);
+  padding: 3px 18px;
+  white-space: nowrap;
+  outline: transparent solid 2px;
+  border-radius: calc(0.5rem);
+  border-width: calc(0.3125rem);
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  background: linear-gradient(rgb(32, 33, 37), rgb(32, 33, 37)) no-repeat
+      padding-box,
+    linear-gradient(
+        81.02deg,
+        rgb(250, 85, 96) -23.47%,
+        rgb(177, 75, 244) 45.52%,
+        rgb(77, 145, 255) 114.8%
+      )
+      border-box;
+  transition: all 0.1s ease 0s;
+}
+.search__boton::before {
+  content: "";
+  position: absolute;
+  inset: calc(-0.1875rem);
+  margin: calc(-0.0625rem);
+  border: calc(0.3125rem) solid rgb(32, 33, 37);
+  border-radius: calc(0.5rem);
+}
+.search__boton:hover {
+  box-shadow: rgba(143, 0, 255, 0.6) 0px 0px calc(0.9375rem);
+  background: linear-gradient(rgb(38, 39, 44), rgb(38, 39, 44)) no-repeat
+      padding-box,
+    linear-gradient(
+        81.02deg,
+        rgb(250, 85, 96) -23.47%,
+        rgb(177, 75, 244) 45.52%,
+        rgb(77, 145, 255) 114.8%
+      )
+      border-box;
+  border-width: calc(0.3125rem);
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+}
